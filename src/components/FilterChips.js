@@ -10,10 +10,9 @@ export function FilterChips({ options, selected, onSelect, includeAll = true }) 
     <Pressable
       onPress={onPress}
       style={{
-        // size to content — this fixes the clipping
-        alignSelf: 'flex-start',
-        paddingHorizontal: 16,
-        paddingVertical: 9,
+        paddingHorizontal: 18,
+        height: 40,
+        justifyContent: 'center',
         borderRadius: radius.pill,
         backgroundColor: active ? colors.primary : colors.surface,
         borderWidth: 1,
@@ -22,11 +21,11 @@ export function FilterChips({ options, selected, onSelect, includeAll = true }) 
       }}
     >
       <Text
-        numberOfLines={1}
         style={{
           fontSize: 14,
           fontWeight: '600',
           color: active ? colors.primaryText : colors.textDim,
+          includeFontPadding: false,
         }}
       >
         {label}
@@ -38,6 +37,7 @@ export function FilterChips({ options, selected, onSelect, includeAll = true }) 
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
+      style={{ flexGrow: 0 }}
       contentContainerStyle={{
         paddingHorizontal: space.md,
         paddingVertical: space.sm,

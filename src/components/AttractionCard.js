@@ -30,16 +30,16 @@ export function AttractionCard({ attraction, onPress }) {
     >
       {/* category color accent bar */}
       <View style={{ width: 5, backgroundColor: meta.color }} />
-      <View style={{ flex: 1, padding: space.md }}>
+      <View style={{ flex: 1, paddingVertical: space.md, paddingHorizontal: space.md }}>
         <Text style={{ fontSize: 17, fontWeight: '700', color: colors.text }}>
           {attraction.nameEn || attraction.name}
         </Text>
-        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4, gap: 8 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8, gap: 8 }}>
           <View style={{
             backgroundColor: meta.color + '22',
-            paddingHorizontal: 8, paddingVertical: 2, borderRadius: radius.pill,
+            paddingHorizontal: 10, paddingVertical: 3, borderRadius: radius.pill,
           }}>
-            <Text style={{ fontSize: 12, fontWeight: '600', color: meta.color }}>{meta.label}</Text>
+            <Text style={{ fontSize: 12, fontWeight: '700', color: meta.color }}>{meta.label}</Text>
           </View>
           {attraction.municipality ? (
             <Text style={{ fontSize: 13, color: colors.textDim }}>{attraction.municipality}</Text>
