@@ -5,6 +5,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { fetchAttractions } from '../api/attractions.js';
 import { useTheme } from '../theme/useTheme.js';
+import { MapErrorBoundary } from '../components/MapErrorBoundary.js';
 
 let MapView, Marker;
 try {
@@ -17,7 +18,18 @@ try {
 
 const INITIAL_REGION = { latitude: 60.39, longitude: 5.32, latitudeDelta: 0.4, longitudeDelta: 0.4 };
 
-export default function MapScreen({ navigation, route }) {
+// Exported screen wraps the map in an error boundary so a map crash
+// (e.g. missing Android Google Maps key) can't take down the app.
+export default function MapScreen(props) {
+  const { colors } = useTheme();
+  return (
+    <MapErrorBoundary colors={colors}>
+      <MapScreenInner {...props} />
+    </MapErrorBoundary>
+  );
+}
+
+function MapScreenInner({ navigation, route }) {
   const { colors, space, CATEGORY_META } = useTheme();
   const focus = route?.params?.focus; // attraction to center on, if any
   const mapRef = useRef(null);
